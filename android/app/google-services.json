@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "999829528518",
+    "project_id": "digital-menu-soludev",
+    "storage_bucket": "digital-menu-soludev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999829528518:android:8ee4a7602ef47d50d61cc7",
+        "android_client_info": {
+          "package_name": "com.soludevarg.digitalmenu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999829528518-kuo2s0g4pm92lvfvbq5j4i0rt9ppm3rv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFjJ8DmEgiqG4edad6YH6RsVJfw2skZQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999829528518-kuo2s0g4pm92lvfvbq5j4i0rt9ppm3rv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
