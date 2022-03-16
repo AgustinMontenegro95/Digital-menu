@@ -42,15 +42,19 @@ class MyApp extends StatelessWidget {
                       maxWidth: 1200,
                       minWidth: 480,
                       defaultScale: true,
+                      defaultName: MOBILE,
                       breakpoints: [
+                        const ResponsiveBreakpoint.resize(360),
                         const ResponsiveBreakpoint.resize(450, name: MOBILE),
+                        const ResponsiveBreakpoint.resize(640,
+                            name: 'MOBILE_LARGE'),
                         const ResponsiveBreakpoint.autoScale(800, name: TABLET),
                         const ResponsiveBreakpoint.autoScale(1000,
                             name: TABLET),
                         const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
                         const ResponsiveBreakpoint.autoScale(2460, name: "4K"),
                       ],
-                      background: Container(color: Color(0xFFF5F5F5)));
+                      background: Container(color: const Color(0xFFF5F5F5)));
                 }
                 // De lo contrario, no están registrados. Mostrar la página de inicio de sesión.
                 return ResponsiveWrapper.builder(
@@ -58,14 +62,18 @@ class MyApp extends StatelessWidget {
                     maxWidth: 1200,
                     minWidth: 480,
                     defaultScale: true,
+                    defaultName: MOBILE,
                     breakpoints: [
+                      const ResponsiveBreakpoint.resize(360),
                       const ResponsiveBreakpoint.resize(450, name: MOBILE),
+                      const ResponsiveBreakpoint.resize(640,
+                          name: 'MOBILE_LARGE'),
                       const ResponsiveBreakpoint.autoScale(800, name: TABLET),
                       const ResponsiveBreakpoint.autoScale(1000, name: TABLET),
                       const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
                       const ResponsiveBreakpoint.autoScale(2460, name: "4K"),
                     ],
-                    background: Container(color: Color(0xFFF5F5F5)));
+                    background: Container(color: const Color(0xFFF5F5F5)));
               }),
           routes: appRoutes,
         ),

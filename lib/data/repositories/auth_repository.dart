@@ -44,7 +44,7 @@ class AuthRepository {
           userModel.name = nombre.toString();
           userModel.nombreEmpresa = nombreEmpresa.toString();
           userModel.image = downloadUrl.toString();
-          userModel.uId = user!.uid;
+          userModel.uid = user!.uid;
           await _store.collection("users").doc(user.uid).set(userModel.toMap());
         }
       });

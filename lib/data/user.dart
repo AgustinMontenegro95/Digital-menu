@@ -1,5 +1,5 @@
 class UserModel {
-  String? uId;
+  String? uid;
   String? name;
   String? email;
   String? nombreEmpresa;
@@ -8,7 +8,7 @@ class UserModel {
   String? telefono;
 
   UserModel({
-    this.uId,
+    this.uid,
     this.name,
     this.email,
     this.nombreEmpresa,
@@ -16,9 +16,21 @@ class UserModel {
     this.telefono,
     this.image,
   });
+  //receiving data from server
+  factory UserModel.fromMap(map) {
+    return UserModel(
+      uid: map['uid'],
+      email: map['email'],
+      name: map['name'],
+      telefono: map['telefono'],
+      direccion: map['direccion'],
+      image: map['image'],
+      nombreEmpresa: map['nombreEmpresa'],
+    );
+  }
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    uId = json['uId'];
+    uid = json['uId'];
     name = json['name'];
     email = json['email'];
     nombreEmpresa = json['nombreEmpresa'];
@@ -29,7 +41,7 @@ class UserModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'uId': uId,
+      'uId': uid,
       'name': name,
       'email': email,
       'nombreEmpresa': nombreEmpresa,
