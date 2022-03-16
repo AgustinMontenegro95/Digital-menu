@@ -1,27 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digital_menu/bloc/auth/auth_bloc.dart';
-import 'package:digital_menu/data/user.dart';
+import 'package:digital_menu/data/models/user_model.dart';
+import 'package:digital_menu/screens/generar_menu/cargar_menu.dart';
 import 'package:digital_menu/screens/signin_screen/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _HomeScreenState extends State<HomeScreen> {
   // Obtener el usuario de la Instancia FirebaseAuth
-  final user = FirebaseAuth.instance.currentUser!;
+  final user = FirebaseAuth.instance.currentUser;
   UserModel usuario = UserModel();
 
   Future<void> _recibirDatos() async {
     await FirebaseFirestore.instance
         .collection("users")
-        .doc(user.uid)
+        .doc(user!.uid)
         .get()
         .then((value) {
       usuario = UserModel.fromMap(value.data());
@@ -85,6 +86,17 @@ class _DashboardState extends State<Dashboard> {
                         onPressed: () {
                           // Cierre de sesión del usuario
                           context.read<AuthBloc>().add(SignOutRequested());
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        child: const Text('Cargar menu'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CargarMenu()),
+                          );
                         },
                       ),
                     ],

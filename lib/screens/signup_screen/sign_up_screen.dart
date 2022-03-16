@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:digital_menu/bloc/auth/auth_bloc.dart';
-import 'package:digital_menu/screens/Dashboard/dashboard.dart';
+import 'package:digital_menu/screens/home_screen/home_screen.dart';
 import 'package:digital_menu/styles/app_colors.dart';
 import 'package:digital_menu/styles/text_styles.dart';
 import 'package:digital_menu/widgets/custom_formfield.dart';
@@ -83,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               // Navigating to the dashboard screen if the user is authenticated
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => const Dashboard(),
+                  builder: (context) => const HomeScreen(),
                 ),
               );
             }

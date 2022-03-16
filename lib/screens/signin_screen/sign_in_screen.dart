@@ -1,5 +1,5 @@
 import 'package:digital_menu/bloc/auth/auth_bloc.dart';
-import 'package:digital_menu/screens/Dashboard/dashboard.dart';
+import 'package:digital_menu/screens/home_screen/home_screen.dart';
 import 'package:digital_menu/styles/app_colors.dart';
 import 'package:digital_menu/styles/text_styles.dart';
 import 'package:digital_menu/widgets/custom_formfield.dart';
@@ -50,7 +50,7 @@ class _SignInScreenState extends State<SignInScreen> {
           if (state is Authenticated) {
             // Navigating to the dashboard screen if the user is authenticated
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const Dashboard()));
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
           }
           if (state is AuthError) {
             // Showing the error message if the user has entered invalid credentials
@@ -146,7 +146,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   funcion: (value) {
                     return value != null && !EmailValidator.validate(value)
                         ? 'Enter a valid email'
-                        : "";
+                        : null;
                   },
                 ),
                 const SizedBox(height: 30.0),
@@ -169,7 +169,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     if (value != null && value.length < 6) {
                       return "Enter min. 6 characters";
                     } else {
-                      return "";
+                      return null;
                     }
                   },
                 ),

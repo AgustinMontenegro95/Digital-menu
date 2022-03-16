@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digital_menu/data/models/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
@@ -13,20 +15,18 @@ import 'package:screenshot/screenshot.dart';
 import 'package:digital_menu/screens/qr_screen.dart';
 
 class BotonSubirImagen extends StatelessWidget {
-  const BotonSubirImagen(
+  final UserModel usuario;
+  final String extencion;
+  final ScreenshotController screenshotController;
+  final storage = FirebaseStorage.instance;
+  final store = FirebaseFirestore.instance;
+
+  BotonSubirImagen(
       {Key? key,
-      required this.storage,
-      required this.firestore,
-      required this.nombreImagen,
+      required this.usuario,
       required this.extencion,
       required this.screenshotController})
       : super(key: key);
-  final String nombreImagen;
-  final String extencion;
-
-  final FirebaseStorage storage;
-  final FirebaseFirestore firestore;
-  final ScreenshotController screenshotController;
 
   @override
   Widget build(BuildContext context) {
@@ -48,23 +48,24 @@ class BotonSubirImagen extends StatelessWidget {
 
         //guardar el archivo en el directorio principal de la aplicacion
         MimeType type = MimeType.PNG;
-        String path = await FileSaver.instance
-            .saveFile(nombreImagen, _imagefile, extencion, mimeType: type);
-        log(path);
-        // concateno el nombre con la ext para poder subir a fireStorage
-        String imageName = nombreImagen + '.' + extencion;
+        String path = await FileSaver.instance.saveFile(
+            usuario.nombreEmpresa!, _imagefile, extencion,
+            mimeType: type);
         //se busca la imagen guardada y se crea un tipo File necesario para poder subir
         final file = File(path);
         //subir archivo a Storage
-        TaskSnapshot snapshot =
-            await storage.ref().child("images/$imageName").putFile(file);
+        TaskSnapshot snapshot = await storage
+            .ref()
+            .child(
+                "Empresas/${usuario.nombreEmpresa.toString()}/${usuario.nombreEmpresa.toString()}")
+            .putFile(file);
         // si se subio sin problemas , se guarda la url en FireStore
         if (snapshot.state == TaskState.success) {
           final String downloadUrl = await snapshot.ref.getDownloadURL();
-          await firestore
-              .collection("images")
-              .add({"url": downloadUrl, "name": imageName});
-          const snackBar = SnackBar(content: Text('Yay! Success'));
+          await store
+              .collection("Empresas")
+              .add({"url": downloadUrl, "name": usuario.nombreEmpresa});
+          const snackBar = SnackBar(content: Text('QR creado exitosamente!'));
           //notificacin en pantalla
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           Navigator.push(

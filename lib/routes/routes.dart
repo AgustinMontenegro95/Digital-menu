@@ -1,4 +1,4 @@
-import 'package:digital_menu/screens/Dashboard/dashboard.dart';
+import 'package:digital_menu/screens/home_screen/home_screen.dart';
 import 'package:digital_menu/screens/intro_screen/intro_login_screen.dart';
 import 'package:digital_menu/screens/intro_screen/intro_screen.dart';
 import 'package:digital_menu/screens/signin_screen/sign_in_screen.dart';
@@ -13,5 +13,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'signin': (_) => const SignInScreen(),
   'signup': (_) => const SignUpScreen(),
   //colocar home
-  'home': (_) => const Dashboard(),
+  'home': (_) => const HomeScreen(),
 };

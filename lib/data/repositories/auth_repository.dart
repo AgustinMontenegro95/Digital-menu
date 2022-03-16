@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:digital_menu/data/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digital_menu/data/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -33,7 +33,7 @@ class AuthRepository {
         TaskSnapshot snapshot = await _storage
             .ref()
             .child(
-                "images/${nombreEmpresa.toString()}/${nombreEmpresa.toString()}")
+                "Empresas/${nombreEmpresa.toString()}/menu_${nombreEmpresa.toString()}")
             .putFile(file);
         // si se subio sin problemas , se guarda la url en FireStore
         if (snapshot.state == TaskState.success) {
